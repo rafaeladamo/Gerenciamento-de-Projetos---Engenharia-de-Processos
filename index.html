@@ -259,10 +259,7 @@
 <body>
 
 <div id="gear-tooltip" class="gear-tooltip"></div>
-<div id="toast-container"></div> <!-- Container para alertas -->
-
-<!-- MODAL DE HISTÓRICO -->
-<div id="history-overlay">
+<div id="toast-container"></div> <div id="history-overlay">
     <div class="history-box">
         <div class="history-header">
             <h3 style="margin:0; color:var(--text-primary)">Histórico de Atualizações</h3>
@@ -275,7 +272,6 @@
     </div>
 </div>
 
-<!-- MODAL POWER BI -->
 <div id="powerbi-overlay">
     <div class="external-modal-header">
         <h3 style="margin:0">Dashboard Setorial (Power BI)</h3>
@@ -286,7 +282,6 @@
     </div>
 </div>
 
-<!-- MODAL EXCEL (MATRIZ DE HABILIDADES) -->
 <div id="excel-overlay">
     <div class="external-modal-header">
         <h3 style="margin:0">Matriz de Habilidades (Excel)</h3>
@@ -297,7 +292,6 @@
     </div>
 </div>
 
-<!-- TELA DE LOGIN -->
 <div id="login-wrapper">
     <div class="login-card-container">
         <div id="auth-container">
@@ -326,21 +320,17 @@
     <div class="car-scene"><img src="./images/carro.png" class="full-scene-img" alt="Carro" onerror="this.style.display='none'"></div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="main-app">
     <header>
-        <!-- LOGO NO CANTO ESQUERDO -->
         <div class="header-logo">
              <img src="images/logo.png" alt="Logo Magna" onerror="this.style.display='none'">
         </div>
 
-        <!-- TÍTULO CENTRALIZADO -->
         <div class="header-brand">
             <h1>Gerenciamento de Projetos</h1>
             <h2>ENG. DE PROCESSOS</h2>
         </div>
 
-        <!-- CONTROLES NA DIREITA -->
         <div class="header-controls">
             <div class="project-select-wrapper">
                 <button id="projectButton"><span id="currentProjectText">Todos</span> <span>▼</span></button>
@@ -364,7 +354,6 @@
     <div id="dashboard-body">
         <div class="dashboard-grid">
             
-            <!-- ESQUERDA: INDICADORES -->
             <div class="indicators-column">
                 <div class="overview-card">
                     <div class="card-header"><h3>Visão Geral do Projeto</h3></div>
@@ -391,12 +380,10 @@
                 </div>
             </div>
 
-            <!-- CENTRO: ENGRENAGEM METALICA REAL -->
             <div class="gear-column"><svg viewBox="0 0 500 500" id="gearSVG"></svg></div>
         </div>
     </div>
 
-    <!-- MODAL DIREITO -->
     <div id="details-modal">
         <div class="modal-header">
             <div style="display:flex; flex-direction:column;">
@@ -406,7 +393,6 @@
             <button onclick="closeModal()" style="border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-primary);align-self:flex-start;">&times;</button>
         </div>
         
-        <!-- ::::::: BARRA DE PESQUISA (ITEM 1) ::::::: -->
         <div style="padding: 15px 20px 0 20px;">
             <input type="text" id="task-search" placeholder="🔍 Buscar atividade..." onkeyup="filterTasks()" 
                    style="width:100%; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:var(--bg-color); color:var(--text-primary); font-family:inherit;">
