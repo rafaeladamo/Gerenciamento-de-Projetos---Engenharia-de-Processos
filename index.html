@@ -43,38 +43,80 @@
       transition: background 0.3s, color 0.3s;
   }
 
-  /* :::::::: LOGIN :::::::: */
+  /* :::::::: LOGIN REFINADO (GLASSMORPISM) :::::::: */
   body:not(.logged-in) {
       background: radial-gradient(circle at 30% 50%, #1c2e4a 0%, #05080a 100%);
       display: flex; align-items: center; justify-content: center;
   }
   #login-wrapper { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 2000; }
   
-  .car-scene { position: absolute; top: 0; right: 0; bottom: 0; width: 70%; z-index: 1; }
+  .car-scene { position: absolute; top: 0; right: 0; bottom: 0; width: 75%; z-index: 1; }
   .full-scene-img { 
       width: 100%; height: 100%; object-fit: cover; object-position: center; 
-      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 60%); 
-      mask-image: linear-gradient(to right, transparent 0%, black 60%); 
+      -webkit-mask-image: linear-gradient(to right, transparent 5%, black 45%); 
+      mask-image: linear-gradient(to right, transparent 5%, black 45%); 
   }
 
   .login-card-container { 
       width: 40%; height: 100%; display: flex; align-items: center; justify-content: center; z-index: 10; 
-      background: linear-gradient(to right, rgba(0,0,0,0.6) 0%, transparent 100%); 
+      background: linear-gradient(to right, rgba(0,0,0,0.8) 0%, transparent 100%); 
+      padding-left: 5%;
   }
 
   #auth-container { 
-      background: #ffffff; padding: 50px 40px; border-radius: 16px; 
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); width: 400px; text-align: center; 
-      animation: fadeIn 0.5s ease-out;
+      background: rgba(255, 255, 255, 0.07); 
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 60px 45px; 
+      border-radius: 28px; 
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6); 
+      width: 100%;
+      max-width: 420px; 
+      text-align: center; 
+      animation: fadeInLogin 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .auth-input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.95rem; }
-  .auth-btn { background-color: var(--primary-blue); color: white; padding: 14px; border: none; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 700; font-size: 1rem; margin-top: 10px; transition: background 0.2s; }
-  .auth-btn:hover { background-color: #005a9e; }
+  @keyframes fadeInLogin { 
+      from { opacity: 0; transform: translateY(30px); } 
+      to { opacity: 1; transform: translateY(0); } 
+  }
+
+  .auth-header h2 { color: white; font-size: 1.8rem; margin: 0 0 8px 0; font-weight: 700; }
+  .auth-header p { color: #94a3b8; font-size: 0.95rem; margin-bottom: 35px; }
+
+  .auth-input { 
+      width: 100%; padding: 16px 20px; margin-bottom: 18px; 
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1); 
+      border-radius: 12px; 
+      font-family: inherit; font-size: 1rem; 
+      color: white;
+      transition: all 0.3s;
+  }
+  .auth-input::placeholder { color: #64748b; }
+  .auth-input:focus { 
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.2);
+  }
+
+  .auth-btn { 
+      background: linear-gradient(135deg, #0078D7 0%, #005a9e 100%);
+      color: white; padding: 16px; border: none; border-radius: 12px; width: 100%; 
+      cursor: pointer; font-weight: 700; font-size: 1.1rem; margin-top: 10px; 
+      transition: all 0.3s;
+      box-shadow: 0 10px 20px rgba(0, 120, 215, 0.3);
+      letter-spacing: 1px;
+  }
+  .auth-btn:hover { 
+      transform: translateY(-2px);
+      box-shadow: 0 15px 25px rgba(0, 120, 215, 0.4);
+  }
   
-  .auth-actions { display: flex; justify-content: space-between; margin-top: 20px; font-size: 0.9rem; }
-  .auth-link { color: var(--text-secondary); text-decoration: none; cursor: pointer; font-weight: 500; transition: color 0.2s; }
-  .auth-link:hover { color: var(--primary-blue); text-decoration: underline; }
+  .auth-actions { display: flex; justify-content: space-between; margin-top: 25px; font-size: 0.85rem; }
+  .auth-link { color: #94a3b8; text-decoration: none; cursor: pointer; font-weight: 500; transition: color 0.2s; }
+  .auth-link:hover { color: white; }
 
   .hidden-screen { display: none !important; }
   body.logged-in #login-wrapper { display: none; }
@@ -86,15 +128,19 @@
   }
   .toast {
       background-color: var(--primary-blue); color: white; padding: 15px 20px;
-      border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      display: flex; align-items: center; gap: 15px; min-width: 300px;
+      border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      display: flex; align-items: center; gap: 15px; min-width: 320px;
       animation: slideInToast 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      pointer-events: auto;
+      pointer-events: auto; border-left: 6px solid rgba(0,0,0,0.15);
   }
-  .toast-icon { font-size: 1.5rem; }
+  .toast.success { background-color: var(--success-color); }
+  .toast.warning { background-color: var(--warning-color); }
+  .toast.error { background-color: var(--danger-color); }
+
+  .toast-icon { font-size: 1.4rem; }
   .toast-content { display: flex; flex-direction: column; }
-  .toast-title { font-size: 0.8rem; font-weight: 700; opacity: 0.8; text-transform: uppercase; margin-bottom: 2px; }
-  .toast-msg { font-size: 0.95rem; font-weight: 500; }
+  .toast-title { font-size: 0.75rem; font-weight: 800; opacity: 0.9; text-transform: uppercase; margin-bottom: 2px; letter-spacing: 0.5px; }
+  .toast-msg { font-size: 0.9rem; font-weight: 500; line-height: 1.3; }
   .toast.hiding { opacity: 0; transform: translateY(-20px); transition: all 0.3s ease; }
   @keyframes slideInToast { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
 
@@ -172,9 +218,8 @@
   #details-modal.open { right: 0; }
   .modal-header { padding: 20px 25px; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-start; }
   .sector-responsible { display: block; font-size: 0.85rem; color: var(--text-secondary); margin-top: 4px; font-weight: 500; }
-  .modal-content { flex: 1; padding: 20px; overflow-y: auto; overflow-x: hidden; /* Evita scroll lateral na animação */ }
+  .modal-content { flex: 1; padding: 20px; overflow-y: auto; overflow-x: hidden; }
   
-  /* :::::::: ANIMAÇÃO DE ENTRADA (ITEM 3) :::::::: */
   @keyframes slideInRight {
       from { opacity: 0; transform: translateX(20px); }
       to { opacity: 1; transform: translateX(0); }
@@ -182,19 +227,9 @@
 
   .task-item { 
       background: var(--bg-color); border: 1px solid rgba(0,0,0,0.05); border-radius: 8px; padding: 12px; margin-bottom: 10px; display: flex; gap: 10px; align-items: center; transition: transform 0.2s, box-shadow 0.2s, background 0.2s; 
-      /* Animação */
       opacity: 0;
       animation: slideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
-  /* Stagger (atraso em cascata) */
-  .task-item:nth-child(1) { animation-delay: 0.05s; }
-  .task-item:nth-child(2) { animation-delay: 0.1s; }
-  .task-item:nth-child(3) { animation-delay: 0.15s; }
-  .task-item:nth-child(4) { animation-delay: 0.2s; }
-  .task-item:nth-child(5) { animation-delay: 0.25s; }
-  .task-item:nth-child(6) { animation-delay: 0.3s; }
-  .task-item:nth-child(n+7) { animation-delay: 0.35s; }
-
   .task-item:hover { transform: translateX(8px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); background: #ffffff; }
   .task-status-bar { width: 4px; border-radius: 2px; align-self: stretch; }
   .task-info { flex: 1; }
@@ -231,7 +266,6 @@
   .empty-hist { text-align: center; color: var(--text-secondary); padding: 20px; }
   .gear-tooltip { position: fixed; background: rgba(15, 23, 42, 0.9); color: white; padding: 8px 12px; border-radius: 6px; font-size: 0.85rem; pointer-events: none; z-index: 1000; display: none; }
   
-  /* ::::::::::::: MODALS EXTERNOS (Power BI & Excel) ::::::::::::: */
   #powerbi-overlay, #excel-overlay {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: #f4f6f8; z-index: 3000; display: none; 
@@ -252,14 +286,16 @@
       #details-modal { width: 100%; }
       svg#gearSVG { width: 350px; height: 350px; }
       .car-scene { display: none; }
-      .login-card-container { width: 100%; }
+      .login-card-container { width: 100%; padding-left: 0; }
   }
 </style>
 </head>
 <body>
 
 <div id="gear-tooltip" class="gear-tooltip"></div>
-<div id="toast-container"></div> <div id="history-overlay">
+<div id="toast-container"></div> 
+
+<div id="history-overlay">
     <div class="history-box">
         <div class="history-header">
             <h3 style="margin:0; color:var(--text-primary)">Histórico de Atualizações</h3>
@@ -292,32 +328,58 @@
     </div>
 </div>
 
+<!-- TELA DE LOGIN ATUALIZADA -->
 <div id="login-wrapper">
     <div class="login-card-container">
         <div id="auth-container">
-            <div style="font-size:2rem; font-weight:800; color:#1c2e4a; margin-bottom:10px;">MAGNA</div>
+            <!-- LOGO INTEGRADA -->
+            <div style="margin-bottom: 30px; display: flex; justify-content: center;">
+                <img src="images/logo.png" alt="Logo Magna" style="height: 50px; width: auto; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+            </div>
+
+            <div class="auth-header">
+                <h2>Bem-vindo</h2>
+            </div>
+            
+            <!-- TELA LOGIN -->
             <div id="screen-login" class="auth-form">
                 <input type="text" id="login-user" class="auth-input" placeholder="Usuário">
                 <input type="password" id="login-pass" class="auth-input" placeholder="Senha">
                 <button onclick="login()" class="auth-btn">ENTRAR</button>
                 <div class="auth-actions">
                     <a class="auth-link" onclick="showScreen('register')">Criar conta</a>
-                    <a class="auth-link" onclick="alert('Funcionalidade em desenvolvimento')">Esqueci a senha</a>
+                    <a class="auth-link" onclick="showScreen('forgot')">Esqueci a senha</a>
                 </div>
             </div>
+            
+            <!-- TELA CADASTRO -->
             <div id="screen-register" class="auth-form hidden-screen">
-                <h3 style="margin-bottom:15px;">Criar Conta</h3>
+                <h3 style="color: white; margin-bottom:15px;">Criar Conta</h3>
                 <input type="text" id="reg-user" class="auth-input" placeholder="Nome Completo">
                 <input type="email" id="reg-email" class="auth-input" placeholder="Email">
                 <input type="password" id="reg-pass" class="auth-input" placeholder="Senha">
-                <button onclick="alert('Cadastro realizado com sucesso!'); showScreen('login')" class="auth-btn">CADASTRAR</button>
+                <button onclick="showToast('Cadastro realizado com sucesso!'); showScreen('login')" class="auth-btn">CADASTRAR</button>
                 <div class="auth-actions" style="justify-content: center;">
                     <a class="auth-link" onclick="showScreen('login')">Voltar ao Login</a>
                 </div>
             </div>
+
+            <!-- TELA ESQUECI SENHA -->
+            <div id="screen-forgot" class="auth-form hidden-screen">
+                <h3 style="color: white; margin-bottom:15px;">Redefinir Senha</h3>
+                <input type="text" id="forgot-user" class="auth-input" placeholder="Nome de usuário">
+                <input type="password" id="forgot-new-pass" class="auth-input" placeholder="Nova senha">
+                <input type="password" id="forgot-confirm-pass" class="auth-input" placeholder="Confirmar nova senha">
+                <button onclick="resetPassword()" class="auth-btn">CONFIRMAR E ALTERAR</button>
+                <div class="auth-actions" style="justify-content: center;">
+                    <a class="auth-link" onclick="showScreen('login')">Cancelar</a>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="car-scene"><img src="./images/carro.png" class="full-scene-img" alt="Carro" onerror="this.style.display='none'"></div>
+    <div class="car-scene">
+        <img src="./images/carro.jpg" class="full-scene-img" alt="Carro" onerror="this.style.display='none'">
+    </div>
 </div>
 
 <div id="main-app">
@@ -325,12 +387,10 @@
         <div class="header-logo">
              <img src="images/logo.png" alt="Logo Magna" onerror="this.style.display='none'">
         </div>
-
         <div class="header-brand">
             <h1>Gerenciamento de Projetos</h1>
             <h2>ENG. DE PROCESSOS</h2>
         </div>
-
         <div class="header-controls">
             <div class="project-select-wrapper">
                 <button id="projectButton"><span id="currentProjectText">Todos</span> <span>▼</span></button>
@@ -342,7 +402,7 @@
                 <button class="menu-toggle-btn" onclick="toggleMainMenu()">☰</button>
                 <div id="main-menu" class="main-menu-dropdown">
                     <button class="menu-item" onclick="toggleExcel()"><span>📋</span> Matriz Habilidades</button>
-                    <button class="menu-item" onclick="togglePowerBI()"><span>📊</span> Dashboards</button>
+                    <button class="menu-item" onclick="togglePowerBI()"><span>📊</span> Atividades Engenharia</button>
                     <button class="menu-item" onclick="toggleDarkMode()"><span>🌙</span> Modo Escuro</button>
                     <button class="menu-item" onclick="toggleHistory()"><span>📜</span> Ver Histórico</button>
                     <button class="menu-item danger" onclick="logout()"><span>🚪</span> Sair</button>
@@ -353,7 +413,6 @@
 
     <div id="dashboard-body">
         <div class="dashboard-grid">
-            
             <div class="indicators-column">
                 <div class="overview-card">
                     <div class="card-header"><h3>Visão Geral do Projeto</h3></div>
@@ -379,7 +438,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="gear-column"><svg viewBox="0 0 500 500" id="gearSVG"></svg></div>
         </div>
     </div>
@@ -392,12 +450,10 @@
             </div>
             <button onclick="closeModal()" style="border:none;background:none;font-size:1.5rem;cursor:pointer;color:var(--text-primary);align-self:flex-start;">&times;</button>
         </div>
-        
         <div style="padding: 15px 20px 0 20px;">
             <input type="text" id="task-search" placeholder="🔍 Buscar atividade..." onkeyup="filterTasks()" 
                    style="width:100%; padding:10px; border-radius:8px; border:1px solid #cbd5e1; background:var(--bg-color); color:var(--text-primary); font-family:inherit;">
         </div>
-
         <div class="modal-content" id="activityList"></div>
         <div class="add-task-container">
             <button id="btn-show-add" class="btn-show-add" onclick="toggleAddForm()">+ Nova Atividade</button>
@@ -412,7 +468,6 @@
                 </div>
                 <input type="text" id="new-note" class="edit-input full" placeholder="Alguma observação?">
                 <input type="text" id="new-link" class="edit-input full" placeholder="Cole o Link ou Caminho da pasta...">
-                
                 <div class="edit-actions">
                     <button class="btn-action btn-cancel" onclick="toggleAddForm()">Cancelar</button>
                     <button class="btn-action btn-save" onclick="confirmAddTask()">Adicionar</button>
@@ -427,7 +482,6 @@
   const powerBiUrl = "https://app.powerbi.com/reportEmbed?reportId=7aba2068-f9f4-4c76-9901-1d47614f9922&autoAuth=true&ctid=c760270c-f3da-4cfa-9737-03808ef5579f"; 
   const excelUrl = "https://magna-my.sharepoint.com/personal/rafael_adamo_partner_magna_com/_layouts/15/Doc.aspx?sourcedoc={73c35723-6d28-4759-9a72-4c989de14591}&action=embedview&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True&wdInConfigurator=True";
 
-  /* ::::::::::::: DADOS ::::::::::::: */
   const sectorResponsibles = {
       "MONTAGEM": "Haimar Farah & Leo Yamane",
       "INJEÇÃO": "Marivaldo & Rubens",
@@ -457,66 +511,33 @@
   if(localStorage.getItem("darkMode") === "true") document.body.classList.add("dark-mode");
   if(currentUser) initDashboard();
 
-  /* ::::::::::::: FUNÇÕES DE MODALS EXTERNOS ::::::::::::: */
-  function togglePowerBI() {
-      const el = document.getElementById("powerbi-overlay"); const iframe = document.getElementById("pbi-iframe");
-      if (el.style.display === "flex") { el.style.display = "none"; } 
-      else { 
-          document.getElementById("excel-overlay").style.display = "none";
-          el.style.display = "flex"; 
-          document.getElementById("main-menu").classList.remove("show"); 
-          if (powerBiUrl) iframe.src = powerBiUrl; 
-          else alert("Link do Power BI não configurado."); 
-      }
-  }
-
-  function toggleExcel() {
-      const el = document.getElementById("excel-overlay"); const iframe = document.getElementById("excel-iframe");
-      if (el.style.display === "flex") { el.style.display = "none"; } 
-      else { 
-          document.getElementById("powerbi-overlay").style.display = "none";
-          el.style.display = "flex"; 
-          document.getElementById("main-menu").classList.remove("show"); 
-          if (excelUrl && excelUrl.includes("http")) iframe.src = excelUrl; 
-          else alert("Link do Excel não configurado."); 
-      }
-  }
-
   /* ::::::::::::: FUNÇÕES GERAIS ::::::::::::: */
   
-  // TOAST (Nova Versão)
-  function showToast(msg) {
+  function showToast(msg, type = 'success') {
       const container = document.getElementById('toast-container');
       const toast = document.createElement('div');
-      toast.className = 'toast';
+      toast.className = `toast ${type}`;
+      
+      let icon = '✅';
+      let title = 'Sucesso';
+      
+      if (type === 'warning') { icon = '⚠️'; title = 'Atenção'; }
+      if (type === 'error') { icon = '❌'; title = 'Erro'; }
+      if (type === 'info') { icon = 'ℹ️'; title = 'Informação'; }
+
       toast.innerHTML = `
-        <div class="toast-icon">🔗</div>
+        <div class="toast-icon">${icon}</div>
         <div class="toast-content">
-            <span class="toast-title">Sucesso</span>
+            <span class="toast-title">${title}</span>
             <span class="toast-msg">${msg}</span>
         </div>
       `;
       container.appendChild(toast);
       
-      // Remover após 3s
       setTimeout(() => { 
           toast.classList.add('hiding'); 
           setTimeout(() => toast.remove(), 300);
-      }, 3000);
-  }
-
-  // COPIAR LINK
-  function copyTaskLink(link, name) {
-      if(!link) {
-          showToast(`Atividade "${name}" não possui link configurado.`);
-          return;
-      }
-      navigator.clipboard.writeText(link).then(() => {
-          showToast("Link copiado para a área de transferência!");
-      }).catch(err => {
-          console.error(err);
-          showToast("Erro ao copiar link.");
-      });
+      }, 4000);
   }
 
   function saveData() { 
@@ -539,6 +560,28 @@
           initDashboard();
       }
   }
+
+  function resetPassword() {
+      const user = document.getElementById('forgot-user').value;
+      const newPass = document.getElementById('forgot-new-pass').value;
+      const confirmPass = document.getElementById('forgot-confirm-pass').value;
+
+      if(!user || !newPass || !confirmPass) {
+          showToast("Preencha todos os campos para continuar.", "warning");
+          return;
+      }
+      if(newPass !== confirmPass) {
+          showToast("As senhas não coincidem!", "error");
+          return;
+      }
+
+      showToast(`Senha alterada com sucesso para o usuário: ${user}`);
+      document.getElementById('forgot-user').value = "";
+      document.getElementById('forgot-new-pass').value = "";
+      document.getElementById('forgot-confirm-pass').value = "";
+      showScreen('login');
+  }
+
   function logout() { sessionStorage.removeItem("currentUser"); location.reload(); }
 
   function initDashboard() {
@@ -549,6 +592,47 @@
       setupProjectSelector();
       updateDashboardStats(); 
       desenharEngrenagem();
+  }
+
+  /* ::::::::::::: DASHBOARD LOGIC ::::::::::::: */
+  
+  function selectSector(i) {
+      if (currentProject === "TODOS") {
+          showToast("Selecione um projeto específico no menu superior para visualizar este setor.", "warning");
+          return;
+      }
+
+      if(selectedSectorIndex === i) { 
+          selectedSectorIndex = null; 
+          document.body.classList.remove('view-active'); 
+          updateDashboardStats(null); 
+          closeModal(); 
+      } else { 
+          selectedSectorIndex = i; 
+          document.body.classList.add('view-active'); 
+          updateDashboardStats(sectorNames[i]);
+          document.getElementById('details-modal').classList.add('open'); 
+          renderTasks(); 
+      }
+      desenharEngrenagem();
+  }
+
+  function closeModal() { 
+      document.getElementById('details-modal').classList.remove('open'); 
+      document.body.classList.remove('view-active'); 
+      selectedSectorIndex = null; 
+      updateDashboardStats(null); 
+      desenharEngrenagem(); 
+  }
+
+  function copyTaskLink(link, name) {
+      if(!link) {
+          showToast(`Atividade "${name}" sem link configurado.`, "info");
+          return;
+      }
+      navigator.clipboard.writeText(link).then(() => {
+          showToast("Link copiado para a área de transferência!");
+      }).catch(() => showToast("Erro ao copiar link.", "error"));
   }
 
   function toggleMainMenu() { document.getElementById("main-menu").classList.toggle("show"); }
@@ -563,6 +647,7 @@
       projectData.history.unshift(log);
       if(projectData.history.length > 50) projectData.history.pop(); 
   }
+  
   function toggleHistory() {
       const el = document.getElementById("history-overlay");
       const list = document.getElementById("history-content");
@@ -640,9 +725,9 @@
       
       document.getElementById('card-total-percent').textContent = `${finalAvg}%`;
       const donutFill = document.getElementById('donut-fill');
-      setTimeout(() => { donutFill.style.strokeDasharray = `${finalAvg}, 100`; }, 50);
+      setTimeout(() => { if(donutFill) donutFill.style.strokeDasharray = `${finalAvg}, 100`; }, 50);
       const strokeColor = finalAvg < 30 ? 'var(--danger-color)' : finalAvg < 70 ? 'var(--warning-color)' : 'var(--success-color)';
-      donutFill.style.stroke = strokeColor;
+      if(donutFill) donutFill.style.stroke = strokeColor;
       document.getElementById('card-critical-count').textContent = totalCritical;
       if(minDate) {
           const [y, m, d] = minDate.split('-');
@@ -655,6 +740,7 @@
   const svgNS = "http://www.w3.org/2000/svg";
   function desenharEngrenagem() {
       const gearSVG = document.getElementById("gearSVG");
+      if(!gearSVG) return;
       gearSVG.innerHTML = "";
       const defs = document.createElementNS(svgNS, "defs");
       let filters = `
@@ -770,7 +856,7 @@
           const nextBx = cx + rInner * Math.cos(theta + step);
           const nextBy = cy + rInner * Math.sin(theta + step);
           if(i===0) d += `M ${b1x} ${b1y}`;
-          d += ` L ${p1x} ${p1y}`; d += ` A ${rOuter} ${rOuter} 0 0 1 ${p2x} ${p2y}`; d += ` L ${b2x} ${b2y}`; d += ` A ${rInner} ${rInner} 0 0 1 ${nextBx} ${nextBy}`;
+          d += ` L ${p1x} ${p1y}`; d += ` A ${rOuter} ${rOuter} 0 0 1 ${p2x} ${p2y}`; d += ` L ${b2x} ${b2y}`; d += ` A ${rInner} ${rInner} 0 0 0 ${nextBx} ${nextBy}`;
       }
       d += " Z"; return d;
   }
@@ -788,36 +874,6 @@
       return "#"+(0x1000000+(R<255?R<1?0:R:255)*0x10000+(B<255?B<1?0:B:255)*0x100+(G<255?G<1?0:G:255)).toString(16).slice(1);
   }
 
-  function selectSector(i) {
-      if (currentProject === "TODOS") {
-          alert("Selecione um projeto específico para visualizar ou editar as atividades.");
-          return;
-      }
-
-      if(selectedSectorIndex === i) { 
-          selectedSectorIndex = null; 
-          document.body.classList.remove('view-active'); 
-          updateDashboardStats(null); 
-          closeModal(); 
-      } else { 
-          selectedSectorIndex = i; 
-          document.body.classList.add('view-active'); 
-          updateDashboardStats(sectorNames[i]);
-          document.getElementById('details-modal').classList.add('open'); 
-          renderTasks(); 
-      }
-      desenharEngrenagem();
-  }
-  
-  function closeModal() { 
-      document.getElementById('details-modal').classList.remove('open'); 
-      document.body.classList.remove('view-active'); 
-      selectedSectorIndex = null; 
-      updateDashboardStats(null); 
-      desenharEngrenagem(); 
-  }
-
-  /* ::::::::::::: LOGICA DE PESQUISA (ITEM 1) ::::::::::::: */
   function filterTasks() {
       const term = document.getElementById('task-search').value.toLowerCase();
       const tasks = document.querySelectorAll('.task-item');
@@ -827,19 +883,13 @@
       });
   }
 
-  /* ::::::::::::: RENDERIZAÇÃO DE TAREFAS ::::::::::::: */
   function renderTasks() {
-      // Limpar a busca ao abrir novo setor
       const searchInput = document.getElementById('task-search');
       if(searchInput) searchInput.value = '';
-
       if(selectedSectorIndex === null) return;
       const sName = sectorNames[selectedSectorIndex];
       document.getElementById('modal-sector-title').textContent = sName;
-      
-      const respName = sectorResponsibles[sName] || "N/A";
-      document.getElementById('modal-sector-responsible').textContent = `Responsável: ${respName}`;
-
+      document.getElementById('modal-sector-responsible').textContent = `Responsável: ${sectorResponsibles[sName] || "N/A"}`;
       const list = projectData[currentProject]?.[sName] || [];
       const c = document.getElementById("activityList"); c.innerHTML = "";
 
@@ -847,188 +897,130 @@
           if (editingIndex === idx) {
               const editCard = document.createElement('div');
               editCard.className = 'task-edit-card';
-              
-              const currentLink = t.link || '';
-
               editCard.innerHTML = `
-                  <label style="font-size:0.8rem;color:#64748b;font-weight:600;">Editar Atividade</label>
                   <input type="text" id="edit-name" class="edit-input full" value="${t.name}">
                   <div class="edit-row">
-                      <div style="flex:1"><label style="font-size:0.75rem;">Status</label>
-                          <select id="edit-progress" class="edit-input full">
-                              <option value="0" ${t.progress===0?'selected':''}>0%</option>
-                              <option value="25" ${t.progress===25?'selected':''}>25%</option>
-                              <option value="50" ${t.progress===50?'selected':''}>50%</option>
-                              <option value="75" ${t.progress===75?'selected':''}>75%</option>
-                              <option value="100" ${t.progress===100?'selected':''}>100%</option>
-                          </select>
-                      </div>
-                      <div style="flex:1"><label style="font-size:0.75rem;">Data</label>
-                           <input type="date" id="edit-date" class="edit-input full" value="${t.deadline||''}">
-                      </div>
+                      <select id="edit-progress" class="edit-input full">
+                          <option value="0" ${t.progress===0?'selected':''}>0%</option>
+                          <option value="25" ${t.progress===25?'selected':''}>25%</option>
+                          <option value="50" ${t.progress===50?'selected':''}>50%</option>
+                          <option value="75" ${t.progress===75?'selected':''}>75%</option>
+                          <option value="100" ${t.progress===100?'selected':''}>100%</option>
+                      </select>
+                      <input type="date" id="edit-date" class="edit-input full" value="${t.deadline||''}">
                   </div>
-                  <input type="text" id="edit-note" class="edit-input full" value="${t.note||''}" placeholder="Nota...">
-                  <input type="text" id="edit-link" class="edit-input full" value="${currentLink}" placeholder="Link / Caminho da pasta...">
-
+                  <input type="text" id="edit-link" class="edit-input full" value="${t.link||''}" placeholder="Link / Caminho...">
                   <div class="edit-actions">
                       <button class="btn-action btn-delete" onclick="deleteTask(${idx})">Excluir</button>
-                      <button class="btn-action btn-cancel" onclick="cancelEdit()">Cancelar</button>
                       <button class="btn-action btn-save" onclick="saveTask(${idx})">Salvar</button>
-                  </div>
-              `;
+                  </div>`;
               c.appendChild(editCard);
           } else {
               const color = t.progress===100?'var(--success-color)':t.progress===0?'#cbd5e1':'var(--primary-blue)';
-              let dateBadge = '';
-              if(t.deadline) {
-                  const [y, m, d] = t.deadline.split('-');
-                  const isLate = t.deadline < new Date().toISOString().split('T')[0] && t.progress < 100;
-                  dateBadge = `<span style="font-size:0.75rem;background:${isLate?'#fee2e2':'#f1f5f9'};color:${isLate?'#ef4444':'#64748b'};padding:2px 6px;border-radius:4px;">📅 ${d}/${m}</span>`;
-              }
-              const noteBadge = t.note ? `<span title="${t.note}" style="font-size:0.75rem;cursor:help;">💬</span>` : '';
-
-              // SEM TAG A - APENAS SPAN COM ÍCONE, POIS O CLIQUE É NA ROW
-              let nameHtml = t.name;
-              if (t.link && t.link.trim() !== "") {
-                  nameHtml = `${t.name} <span class="link-icon" title="Copiar Link">🔗</span>`;
-              }
-
               const row = document.createElement('div');
               row.className = 'task-item';
-              
-              // CLIQUE NA TAREFA COPIA O LINK
-              row.onclick = (e) => {
-                  if(e.target.closest('button')) return; // Ignora se clicou no lápis
-                  copyTaskLink(t.link, t.name);
-              };
-
+              row.onclick = (e) => { if(!e.target.closest('button')) copyTaskLink(t.link, t.name); };
               row.innerHTML = `
                   <div class="task-status-bar" style="background:${color}"></div>
                   <div class="task-info">
-                      <div class="task-title">${nameHtml}</div>
-                      <div class="task-meta">
-                          <span style="font-weight:bold; color:${color}">${t.progress}%</span>
-                          ${dateBadge} ${noteBadge}
-                      </div>
+                      <div class="task-title">${t.name} ${t.link?'🔗':''}</div>
+                      <div class="task-meta"><span style="color:${color}">${t.progress}%</span></div>
                   </div>
-                  <button onclick="enableEdit(${idx})" class="btn-icon-edit" title="Editar">✎</button>
-              `;
+                  <button onclick="enableEdit(${idx})" class="btn-icon-edit">✎</button>`;
               c.appendChild(row);
           }
       });
   }
 
   function enableEdit(idx) { editingIndex = idx; renderTasks(); }
-  function cancelEdit() { editingIndex = null; renderTasks(); }
-  
   function saveTask(idx) {
       const s = sectorNames[selectedSectorIndex];
-      const newName = document.getElementById('edit-name').value;
-      const newProgress = parseInt(document.getElementById('edit-progress').value);
-      const newDate = document.getElementById('edit-date').value;
-      const newNote = document.getElementById('edit-note').value;
-      const newLink = document.getElementById('edit-link').value;
-
-      if(!newName) return alert("Nome obrigatório.");
-      
-      projectData[currentProject][s][idx].name = newName;
-      projectData[currentProject][s][idx].progress = newProgress;
-      projectData[currentProject][s][idx].deadline = newDate;
-      projectData[currentProject][s][idx].note = newNote;
-      projectData[currentProject][s][idx].link = newLink;
-
-      addToHistory(`Editou "${newName}" em ${s}`);
-      if(newProgress === 100) confetti({ origin:{x:1, y:0.5} });
-
+      projectData[currentProject][s][idx].name = document.getElementById('edit-name').value;
+      projectData[currentProject][s][idx].progress = parseInt(document.getElementById('edit-progress').value);
+      projectData[currentProject][s][idx].deadline = document.getElementById('edit-date').value;
+      projectData[currentProject][s][idx].link = document.getElementById('edit-link').value;
+      if(projectData[currentProject][s][idx].progress === 100) confetti({ origin:{x:1, y:0.5} });
       editingIndex = null; saveData(); renderTasks();
   }
 
   function deleteTask(ix) {
       if(confirm("Excluir atividade?")) { 
-          const s = sectorNames[selectedSectorIndex];
-          addToHistory(`Removeu tarefa de ${s}`);
-          projectData[currentProject][s].splice(ix,1); editingIndex=null; saveData(); renderTasks(); 
-      }
-  }
-
-  function toggleAddForm() {
-      const btn = document.getElementById('btn-show-add');
-      const form = document.getElementById('add-task-form');
-      if (form.style.display === 'flex') {
-          form.style.display = 'none'; btn.style.display = 'block';
-          document.getElementById('new-name').value = '';
-          document.getElementById('new-note').value = '';
-          document.getElementById('new-link').value = ''; 
-      } else {
-          form.style.display = 'flex'; btn.style.display = 'none';
-          document.getElementById('new-date').value = new Date().toISOString().split('T')[0];
-          document.getElementById('new-name').focus();
+          projectData[currentProject][sectorNames[selectedSectorIndex]].splice(ix,1); 
+          editingIndex=null; saveData(); renderTasks(); 
       }
   }
 
   function confirmAddTask() {
       const name = document.getElementById("new-name").value;
-      const date = document.getElementById("new-date").value;
-      const note = document.getElementById("new-note").value;
-      const link = document.getElementById("new-link").value; 
-      
-      if(!name) return alert("Digite o nome.");
+      if(!name) return;
       const s = sectorNames[selectedSectorIndex];
-      
       if (!projectData[currentProject][s]) projectData[currentProject][s] = [];
-      
-      projectData[currentProject][s].push({ 
-          name: name, 
-          progress: 0, 
-          deadline: date, 
-          note: note,
-          link: link 
-      });
-      
-      addToHistory(`Criou "${name}" em ${s}`);
+      projectData[currentProject][s].push({ name, progress: 0, deadline: document.getElementById("new-date").value, link: document.getElementById("new-link").value });
       saveData(); renderTasks(); toggleAddForm();
+  }
+
+  function toggleAddForm() {
+      const form = document.getElementById('add-task-form');
+      form.style.display = form.style.display === 'flex' ? 'none' : 'flex';
   }
 
   function setupProjectSelector() {
       const drop = document.getElementById('projectDropdown');
       document.getElementById('projectButton').onclick = (e) => { e.stopPropagation(); drop.classList.toggle('show'); };
-      drop.innerHTML = "";
-      
-      const btnAll = document.createElement("button");
-      btnAll.textContent = "Todos";
-      btnAll.classList.add("btn-all-projects");
-      btnAll.onclick = () => {
-          currentProject = "TODOS";
-          document.getElementById('currentProjectText').textContent = "Todos";
-          drop.classList.remove('show');
-          updateDashboardStats(null);
-          selectedSectorIndex = null;
-          closeModal();
-          desenharEngrenagem();
-      };
-      drop.appendChild(btnAll);
-
+      drop.innerHTML = '<button class="btn-all-projects" onclick="selectProj(\'TODOS\', \'Todos\')">Todos</button>';
       Object.keys(projectData).forEach(k => {
           if(k !== 'history' && k !== 'TODOS') {
               const b = document.createElement("button"); b.textContent = k;
-              b.onclick = () => { 
-                  currentProject=k; document.getElementById('currentProjectText').textContent=k; 
-                  drop.classList.remove('show'); updateDashboardStats(null); 
-                  selectedSectorIndex=null; closeModal(); desenharEngrenagem(); 
-              };
+              b.onclick = () => selectProj(k, k);
               drop.appendChild(b);
           }
       });
-      window.onclick = (e) => { 
-          if(!e.target.closest('#projectButton')) drop.classList.remove('show'); 
-          if(!e.target.closest('.user-profile')) document.getElementById('main-menu').classList.remove('show');
-      };
+  }
+  function selectProj(id, txt) {
+      currentProject = id; document.getElementById('currentProjectText').textContent = txt;
+      document.getElementById('projectDropdown').classList.remove('show');
+      closeModal(); updateDashboardStats(); desenharEngrenagem();
   }
   
   const tt = document.getElementById('gear-tooltip');
   function showTooltip(e,t){ tt.style.display='block'; tt.textContent=t; moveTooltip(e); }
   function moveTooltip(e){ tt.style.left=(e.clientX+15)+'px'; tt.style.top=(e.clientY+15)+'px'; }
   function hideTooltip(){ tt.style.display='none'; }
+  
+  /* ::::::::::::: CORREÇÃO DAS FUNÇÕES POWER BI E EXCEL ::::::::::::: */
+  
+  function togglePowerBI() { 
+      const overlay = document.getElementById('powerbi-overlay');
+      const iframe = document.getElementById('pbi-iframe');
+      
+      if (overlay.style.display === 'flex') {
+          overlay.style.display = 'none';
+      } else {
+          overlay.style.display = 'flex';
+          // Carrega o link apenas se ainda não estiver carregado para evitar recarregar à toa
+          if (!iframe.src || iframe.src === window.location.href) {
+              iframe.src = powerBiUrl;
+          }
+          document.getElementById("main-menu").classList.remove("show");
+      }
+  }
+
+  function toggleExcel() { 
+      const overlay = document.getElementById('excel-overlay');
+      const iframe = document.getElementById('excel-iframe');
+      
+      if (overlay.style.display === 'flex') {
+          overlay.style.display = 'none';
+      } else {
+          overlay.style.display = 'flex';
+          // Carrega o link apenas se ainda não estiver carregado
+          if (!iframe.src || iframe.src === window.location.href) {
+              iframe.src = excelUrl;
+          }
+          document.getElementById("main-menu").classList.remove("show");
+      }
+  }
+
 </script>
 </body>
 </html>
