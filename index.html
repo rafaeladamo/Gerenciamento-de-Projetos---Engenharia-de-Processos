@@ -100,6 +100,19 @@
       border-color: var(--primary-blue);
       box-shadow: 0 0 0 4px rgba(0, 120, 215, 0.2);
   }
+  /* ESTILO NOVO: CHECKBOX LEMBRAR-ME */
+  .remember-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      text-align: left;
+      padding-left: 5px;
+  }
+  .remember-container input { cursor: pointer; accent-color: var(--primary-blue); width: 16px; height: 16px; }
+  .remember-container label { cursor: pointer; user-select: none; }
 
   .auth-btn { 
       background: linear-gradient(135deg, #0078D7 0%, #005a9e 100%);
@@ -345,6 +358,10 @@
             <div id="screen-login" class="auth-form">
                 <input type="text" id="login-user" class="auth-input" placeholder="Usuário">
                 <input type="password" id="login-pass" class="auth-input" placeholder="Senha">
+                <div class="remember-container">
+    <input type="checkbox" id="remember-me">
+    <label for="remember-me">Lembrar minhas credenciais</label>
+</div>
                 <button onclick="login()" class="auth-btn">ENTRAR</button>
                 <div class="auth-actions">
                     <a class="auth-link" onclick="showScreen('register')">Criar conta</a>
